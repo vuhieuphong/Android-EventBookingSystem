@@ -56,9 +56,9 @@ public class CreateEventActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Event> events) {
                 String output="";
-                output=String.format("%-4s %-15s %-7s %-8s %-15s %-4s\n","Eid","Event Name","Fee","Time","Location","Oid");
+                output=String.format("%-5s %-15s %-7s %-8s %-15s %-4s\n","Event","Event Name","Fee","Time","Location","Org");
                 for(Event event:events){
-                    output+=String.format("%-4s %-15s %-7s %-8s %-15s %-4s\n"
+                    output+=String.format("%-5s %-15s %-7s %-8s %-15s %-4s\n"
                             ,event.getEventId(),event.getEventName(),"$"+event.getFee(),
                             event.getTime(),event.getLocation(),event.getOrgId());
                 }

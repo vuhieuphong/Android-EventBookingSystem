@@ -151,4 +151,56 @@ public class BookingRepository {
             return mAsyncBookingDao.getBookingsByEventIdUserId(eventId,userId);
         }
     }
+
+    public String getOrgLocationByBookingId(int booking_id){
+        String orgLocationByBookingId=null;
+        try {
+            orgLocationByBookingId=new GetOrgLocationByBookingIdAsync(bookingDao,booking_id).execute().get();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return orgLocationByBookingId;
+    }
+
+    private static class GetOrgLocationByBookingIdAsync extends AsyncTask<Void, Void, String> {
+        private BookingDao mAsyncBookingDao;
+        private int bookingId;
+
+        GetOrgLocationByBookingIdAsync(BookingDao dao,int bookingId) {
+            mAsyncBookingDao = dao;
+            this.bookingId=bookingId;
+        }
+
+        @Override
+        protected String doInBackground(final Void... voids) {
+            return mAsyncBookingDao.getOrgLocationByBookingId(bookingId);
+        }
+    }
+
+    public Double getEventFeeFromBookingId(int booking_id){
+        Double eventFeeFromBookingId=null;
+        try {
+            eventFeeFromBookingId=new GetEventFeeFromBookingIdAsync(bookingDao,booking_id).execute().get();
+        }
+        catch (Exception ex){
+            ex.printStackTrace();
+        }
+        return eventFeeFromBookingId;
+    }
+
+    private static class GetEventFeeFromBookingIdAsync extends AsyncTask<Void, Void, Double> {
+        private BookingDao mAsyncBookingDao;
+        private int bookingId;
+
+        GetEventFeeFromBookingIdAsync(BookingDao dao,int bookingId) {
+            mAsyncBookingDao = dao;
+            this.bookingId=bookingId;
+        }
+
+        @Override
+        protected Double doInBackground(final Void... voids) {
+            return mAsyncBookingDao.getEventFeeFromBookingId(bookingId);
+        }
+    }
 }

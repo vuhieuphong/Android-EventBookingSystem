@@ -49,9 +49,9 @@ public class CreateUserActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<User> users) {
                 String output="";
-                output=String.format("%-4s %-10s %-10s\n","Uid","Username","Password");
+                output=String.format("%-5s %-10s %-10s\n","User","Username","Password");
                 for(User user:users){
-                    output+=String.format("%-4s %-10s %-10s\n"
+                    output+=String.format("%-5s %-10s %-10s\n"
                             ,user.getUserId(),user.getUserName(),user.getPassword());
                 }
                 textViewDisplayUsers.setText(output);

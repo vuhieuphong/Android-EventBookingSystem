@@ -34,6 +34,7 @@
         <activity android:name=".Activity.CreateOrganizerActivity"></activity>
         <activity android:name=".Activity.AddUpdDelBookingActivity"></activity>
         <activity android:name=".Activity.ViewBookingDetailsActivity"></activity>
+        <activity android:name=".Activity.ConfirmBookingActivity"></activity>
         <uses-library android:name="org.apache.http.legacy" android:required="false" />
     </application>
 

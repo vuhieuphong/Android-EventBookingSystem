@@ -87,17 +87,21 @@ public class AddUpdDelBookingActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Booking> bookings) {
                 String output="";
-                output=String.format("%-4s %-9s %-4s %-4s\n","Bid","Quantity","Uid","Eid");
+                output=String.format("%-7s %-8s %-5s %-5s %-6s\n","Booking","Quantity","User","Event","Fee");
 
                 SharedPreferences prf=getSharedPreferences("user_details",MODE_PRIVATE);
                 int currentUser=prf.getInt("userId",0);
                 List<Booking> currentUserBookings=bookings.stream().filter(x->x.getUserId()==currentUser).collect(Collectors.toList());
                 ArrayList<Booking> currentUserBookingsList=new ArrayList<>(currentUserBookings);
 
+                double totalFee=0;
                 for(Booking booking:currentUserBookingsList){
-                    output+=String.format("%-4s %-9s %-4s %-4s\n"
-                            ,booking.getBookingId(),booking.getQuantity(),booking.getUserId(),booking.getEventId());
+                    output+=String.format("%-7s %-8s %-5s %-5s %-6s\n"
+                            ,booking.getBookingId(),booking.getQuantity(),booking.getUserId(),booking.getEventId(),
+                            "$"+booking.getQuantity()*bookingViewModel.getEventFeeFromBookingId(booking.getBookingId()));
+                    totalFee+=booking.getQuantity()*bookingViewModel.getEventFeeFromBookingId(booking.getBookingId());
                 }
+                output+="\nTotal Fee: $"+totalFee;
                 textViewBookings.setText(output);
             }
         });

@@ -2,19 +2,33 @@ package com.example.hieuphong_vu_comp304_003_test02.Activity;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
+import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
+import com.example.hieuphong_vu_comp304_003_test02.Entity.Booking;
 import com.example.hieuphong_vu_comp304_003_test02.R;
+import com.example.hieuphong_vu_comp304_003_test02.ViewModel.BookingViewModel;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -30,18 +44,53 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
+
 public class ViewBookingDetailsActivity extends AppCompatActivity implements OnMapReadyCallback,
         LocationListener, GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener,AdapterView.OnItemSelectedListener{
     private GoogleMap mMap;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     GoogleApiClient mGoogleApiClient;
     LocationRequest mLocationRequest;
 
+    BookingViewModel bookingViewModel;
+    ArrayList<String> spinnerItems;
+    ArrayAdapter<String> adapter;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_booking_details);
+
+        Spinner spinnerBookings=(Spinner)findViewById(R.id.spinnerBookings);
+        spinnerItems=new ArrayList<>();
+        spinnerItems.add("Find Org Location");
+
+        bookingViewModel= ViewModelProviders.of(this).get(BookingViewModel.class);
+        bookingViewModel.getAllBookings().observe(this, new Observer<List<Booking>>() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onChanged(@Nullable List<Booking> bookings) {
+
+                SharedPreferences prf=getSharedPreferences("user_details",MODE_PRIVATE);
+                int currentUser=prf.getInt("userId",0);
+                List<Booking> currentUserBookings=bookings.stream().filter(x->x.getUserId()==currentUser).collect(Collectors.toList());
+                for(Booking curUserBooking:currentUserBookings){
+                    spinnerItems.add("Booking"+curUserBooking.getBookingId()+"-"+bookingViewModel.getOrgLocationByBookingId(curUserBooking.getBookingId()));
+                }
+                adapter= new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerItems);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerBookings.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+        spinnerBookings.setOnItemSelectedListener(this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -185,6 +234,62 @@ public class ViewBookingDetailsActivity extends AppCompatActivity implements OnM
                     Toast.makeText(getApplicationContext(), "Please turn on Location permission!", Toast.LENGTH_SHORT).show();
                 }
                 return;
+            }
+        }
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+        if(position==0){
+            return;
+        }
+        String chosenSpinnerItem=spinnerItems.get(position);
+        String location=chosenSpinnerItem.substring(chosenSpinnerItem.indexOf("-")+1);
+        new SearchLocationAsyncTask(location).execute();
+    }
+    @Override
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO - Custom Code
+    }
+
+    public class SearchLocationAsyncTask extends AsyncTask<Void,Void, Address> {
+        String errorMessage = "";
+        String name;
+
+        SearchLocationAsyncTask(String name){
+            this.name=name;
+        }
+
+        @Override
+        protected Address doInBackground(Void... voids) {
+            Geocoder geocoder = new Geocoder(ViewBookingDetailsActivity.this, Locale.getDefault());
+            List<Address> addresses = null;
+            try {
+                addresses = geocoder.getFromLocationName(name, 1);
+            } catch (IOException e) {
+                errorMessage="Can't find this location due to: \n"+e.getMessage();
+            }
+            if(addresses != null && addresses.size() > 0)
+            {
+                return addresses.get(0);
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(Address address) {
+            if(address == null) {
+                Toast.makeText(ViewBookingDetailsActivity.this,errorMessage,Toast.LENGTH_SHORT).show();
+            }
+            else {
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                MarkerOptions markerOptions = new MarkerOptions();
+                markerOptions.position(latLng);
+                markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+                mCurrLocationMarker = mMap.addMarker(markerOptions);
+
+                mMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                Toast.makeText(getApplicationContext(),name+"\nLatitude: "+address.getLatitude()+"\nLongtitude: "+address.getLongitude(),Toast.LENGTH_LONG).show();
             }
         }
     }

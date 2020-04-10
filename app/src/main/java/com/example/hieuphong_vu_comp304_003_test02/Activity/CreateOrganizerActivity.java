@@ -51,7 +51,7 @@ public class CreateOrganizerActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Organizer> organizers) {
                 String output="";
-                output=String.format("%-4s %-20s %-20s\n","Oid","Org Name","Org Location");
+                output=String.format("%-4s %-20s %-20s\n","Org","Org Name","Org Location");
                 for(Organizer organizer:organizers){
                     output+=String.format("%-4s %-20s %-20s\n"
                             ,organizer.getOrgId(),organizer.getOrgName(),organizer.getOrgLocation());

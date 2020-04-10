@@ -13,6 +13,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
+            android:id="@+id/textViewMainTitle"
             android:textAlignment="center"
             android:textSize="30dp"
             android:fontFamily="monospace"
@@ -21,6 +22,18 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:text="Event Booking\nSystem" />
+
+        <Button
+            android:id="@+id/btnCreatorLink"
+            android:layout_width="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:text="About the Creator"
+            android:textSize="10dp"
+            android:layout_below="@id/textViewMainTitle"
+            android:background="@drawable/roundedcorners"
+            ></Button>
 
         <Button
             android:id="@+id/buttonLogout"
@@ -80,7 +93,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/roundedcorners"
             android:backgroundTint="@color/lightBlue"
-            android:text="View\nBooking\nDetails"
+            android:text="View\nOrganizer\nLocation"
             ></Button>
 
         <Button

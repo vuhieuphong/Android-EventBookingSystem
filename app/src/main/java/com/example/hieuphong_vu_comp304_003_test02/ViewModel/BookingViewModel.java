@@ -36,4 +36,8 @@ public class BookingViewModel extends AndroidViewModel {
     }
 
     public List<Booking> getBookingsByEventIdUserId(int event_id,int user_id){return bookingRepository.getBookingsByEventIdUserId(event_id,user_id);}
+
+    public String getOrgLocationByBookingId(int booking_id){return bookingRepository.getOrgLocationByBookingId(booking_id);}
+
+    public Double getEventFeeFromBookingId(int booking_id){return bookingRepository.getEventFeeFromBookingId(booking_id);}
 }
