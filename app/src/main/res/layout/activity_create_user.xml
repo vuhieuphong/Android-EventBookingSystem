@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/textviewUserName"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Enter User Name:"
+            android:textSize="18dp"
+            android:layout_marginTop="185dp"
+            android:layout_marginLeft="20dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewPassword"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Password:"
+            android:textSize="18dp"
+            android:layout_below="@id/textviewUserName"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="20dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/editTextUserName"
+            android:layout_width="200dp"
+            android:layout_marginTop="170dp"
+            android:hint="unique constraint"
+            android:layout_toRightOf="@id/textviewUserName"
+            android:layout_height="wrap_content">
+        </EditText>
+
+        <EditText
+            android:id="@+id/editTextPassword"
+            android:inputType="textPassword"
+            android:layout_width="200dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/editTextUserName"
+            android:layout_toRightOf="@id/textViewPassword"
+
+            android:layout_height="wrap_content">
+        </EditText>
+
+        <Button
+            android:id="@+id/buttonCreateUser"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/editTextPassword"
+            android:layout_marginTop="30dp"
+            android:layout_width="160dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/lightBlue"
+            android:text="Create" />
+
+        <Button
+            android:id="@+id/buttonReturn"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/editTextPassword"
+            android:layout_marginTop="30dp"
+            android:layout_width="160dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/beige"
+            android:text="Return" />
+
+        <TextView
+            android:text="Create User"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/textViewDisplayUsers"
+            android:gravity="center_horizontal"
+            android:scrollbars = "vertical"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:typeface="monospace"
+            android:text=""
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/lightBlue"
+            android:layout_below="@id/buttonReturn"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

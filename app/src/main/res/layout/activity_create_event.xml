@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/textViewEventName"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Event Name:"
+            android:textSize="18dp"
+            android:layout_marginTop="125dp"
+            android:layout_marginLeft="20dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewFee"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Fee:"
+            android:textSize="18dp"
+            android:layout_below="@id/textViewEventName"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewTime"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Time:"
+            android:textSize="18dp"
+            android:layout_below="@id/textViewFee"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewLocation"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Location:"
+            android:textSize="18dp"
+            android:layout_below="@id/textViewTime"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp">
+        </TextView>
+
+        <TextView
+            android:id="@+id/textViewOrgId"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:text="Enter Organizer Id:"
+            android:textSize="18dp"
+            android:layout_below="@id/textViewLocation"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/editTextEventName"
+            android:layout_width="180dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginLeft="10dp"
+            android:hint=""
+            android:layout_toRightOf="@id/textViewEventName"
+            android:layout_height="wrap_content">
+        </EditText>
+
+        <EditText
+            android:id="@+id/editTextFee"
+            android:layout_width="180dp"
+            android:layout_marginLeft="10dp"
+            android:hint=""
+            android:inputType="number"
+            android:layout_toRightOf="@id/textViewFee"
+            android:layout_below="@id/editTextEventName"
+            android:layout_height="wrap_content">
+        </EditText>
+
+        <EditText
+            android:id="@+id/editTextTime"
+            android:layout_width="180dp"
+            android:layout_marginLeft="10dp"
+            android:hint=""
+            android:layout_toRightOf="@id/textViewTime"
+            android:layout_below="@id/editTextFee"
+            android:layout_height="wrap_content">
+        </EditText>
+
+        <EditText
+            android:id="@+id/editTextLocation"
+            android:layout_width="180dp"
+            android:layout_marginLeft="10dp"
+            android:hint=""
+            android:layout_toRightOf="@id/textViewLocation"
+            android:layout_below="@id/editTextTime"
+            android:layout_height="wrap_content">
+        </EditText>
+
+        <EditText
+            android:id="@+id/editTextOrgId"
+            android:layout_width="180dp"
+            android:layout_marginLeft="10dp"
+            android:hint="fk constraint"
+            android:inputType="number"
+            android:layout_toRightOf="@id/textViewOrgId"
+            android:layout_below="@id/editTextLocation"
+            android:layout_height="wrap_content">
+        </EditText>
+
+        <TextView
+            android:text="Create Event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="60dp"
+            android:layout_centerHorizontal="true"
+            android:textAlignment="center"
+            ></TextView>
+
+        <Button
+            android:id="@+id/buttonCreateEvent"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/editTextOrgId"
+            android:layout_marginTop="30dp"
+            android:layout_width="160dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="40dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/lightBlue"
+            android:text="Create" />
+
+        <Button
+            android:id="@+id/buttonReturn"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/editTextOrgId"
+            android:layout_marginTop="30dp"
+            android:layout_width="160dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/beige"
+            android:text="Return" />
+
+        <EditText
+            android:id="@+id/textViewDisplayEvents"
+            android:gravity="center_horizontal"
+            android:scrollbars="vertical"
+            android:scrollHorizontally="true"
+            android:layout_width="350dp"
+            android:layout_height="200dp"
+            android:typeface="monospace"
+            android:text=""
+            android:textSize="14dp"
+            android:textColor="#757575"
+            android:editable="false"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/lightBlue"
+            android:layout_below="@id/buttonReturn"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
+            />
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

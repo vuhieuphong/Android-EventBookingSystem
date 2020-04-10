@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:fontFamily="sans-serif-medium">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_height="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="30"
+        >
+
+        <TextView
+            android:id="@+id/textViewDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Details"
+            android:layout_weight="60"
+            android:textStyle="bold">
+        </TextView>
+
+        <EditText
+            android:id="@+id/editTextQuantity"
+            android:inputType="number"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13dp"
+            android:hint="Quantity"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+      ></EditText>
+
+        <Button
+            android:id="@+id/buttonAdd"
+            android:gravity="center"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="+"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/darkBlue"></Button>
+        <Button
+            android:id="@+id/buttonSub"
+            android:gravity="center"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:text="-"
+            android:textSize="20dp"
+            android:fontFamily="sans-serif-medium"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/darkBlue"></Button>
+    </LinearLayout>
+</LinearLayout>

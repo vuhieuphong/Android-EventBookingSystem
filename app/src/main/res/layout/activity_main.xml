@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:textAlignment="center"
+            android:textSize="30dp"
+            android:fontFamily="monospace"
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="Event Booking\nSystem" />
+
+        <Button
+            android:id="@+id/buttonLogout"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:text="Logout"
+            android:backgroundTint="@color/beige"
+            android:background="@drawable/roundedcorners"
+            ></Button>
+
+
+        <Button
+            android:id="@+id/buttonCreateEvent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/darkBlue"
+            android:text="Create\nEvent"
+            ></Button>
+
+        <Button
+            android:id="@+id/buttonCreateOrganizer"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/darkBlue"
+            android:text="Create\nOrganizer"
+            ></Button>
+
+        <Button
+            android:id="@+id/btnAddUpdateDeleteBooking"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/buttonLogout"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/lightBlue"
+            android:text="Add\nUpdate\nDelete\nBooking"
+            ></Button>
+
+        <Button
+            android:id="@+id/btnViewBookingDetails"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"
+            android:layout_below="@id/buttonLogout"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/lightBlue"
+            android:text="View\nBooking\nDetails"
+            ></Button>
+
+        <Button
+            android:id="@+id/btnConfirmBooking"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/buttonLogout"
+            android:background="@drawable/roundedcorners"
+            android:backgroundTint="@color/lightBlue"
+            android:text="Confirm\nBooking"
+            ></Button>
+
+
+
+
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
